@@ -71,7 +71,7 @@ data class ArticleModel(
                 publishedAt = articleJson[PUBLISHED_AT] as String,
                 author = articleJson[AUTHOR] as? String?,
                 content = articleJson[CONTENT] as? String?,
-                tempId = (articleJson[URL] as String).subSequence(0, 20).toString() + articleJson[PUBLISHED_AT] as String
+                tempId = (articleJson[TITLE] as String).subSequence(0, 10).toString() + articleJson[PUBLISHED_AT] as String
             )
         }
     }
