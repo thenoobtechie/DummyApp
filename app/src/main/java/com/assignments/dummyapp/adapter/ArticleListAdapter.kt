@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.assignments.dummyapp.view.ArticleModel
+import com.assignments.dummyapp.model.ArticleModel
 import com.assignments.dummyapp.utils.ImageLoader
 import com.assignments.dummyapp.R
 import com.assignments.dummyapp.utils.Constants.DISPLAY_DATE_FORMAT

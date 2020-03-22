@@ -1,4 +1,4 @@
-package com.assignments.dummyapp.view
+package com.assignments.dummyapp.model
 
 import android.content.ContentValues
 import android.database.Cursor
@@ -17,7 +17,6 @@ import com.assignments.dummyapp.utils.Constants.URL
 import com.assignments.dummyapp.utils.Constants.URL_TO_IMAGE
 import kotlinx.android.parcel.Parcelize
 import org.json.JSONObject
-import java.util.*
 
 @Parcelize
 data class ArticleModel(
@@ -71,7 +70,8 @@ data class ArticleModel(
                 publishedAt = articleJson[PUBLISHED_AT] as String,
                 author = articleJson[AUTHOR] as? String?,
                 content = articleJson[CONTENT] as? String?,
-                tempId = (articleJson[TITLE] as String).subSequence(0, 10).toString() + articleJson[PUBLISHED_AT] as String
+                tempId = (articleJson[TITLE] as String).subSequence(0, 10)
+                    .toString() + articleJson[PUBLISHED_AT] as String
             )
         }
     }

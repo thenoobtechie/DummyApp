@@ -4,6 +4,7 @@ import com.assignments.dummyapp.datasource.DBHelper
 import com.assignments.dummyapp.datasource.DeleteArticleCallback
 import com.assignments.dummyapp.datasource.InsertArticleCallback
 import com.assignments.dummyapp.datasource.NetworkHelper
+import com.assignments.dummyapp.model.ArticleModel
 
 class ViewDataBridge(
     var dbHelper: DBHelper,

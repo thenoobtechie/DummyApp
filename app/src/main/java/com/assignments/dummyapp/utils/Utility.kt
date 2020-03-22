@@ -2,14 +2,12 @@ package com.assignments.dummyapp.utils
 
 import android.content.Context
 import android.content.Intent
-import android.content.Intent.ACTION_VIEW
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.Uri
 import android.os.Build
 import android.widget.Toast
 import com.assignments.dummyapp.R
-import com.assignments.dummyapp.view.ArticleModel
+import com.assignments.dummyapp.model.ArticleModel
 import com.assignments.dummyapp.view.DetailActivity
 import org.json.JSONArray
 import org.json.JSONObject

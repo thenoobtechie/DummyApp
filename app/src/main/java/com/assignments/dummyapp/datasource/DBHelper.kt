@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.os.AsyncTask
 import android.util.Log
 import com.assignments.dummyapp.utils.Constants
-import com.assignments.dummyapp.view.ArticleModel
+import com.assignments.dummyapp.model.ArticleModel
 import com.assignments.dummyapp.utils.Constants.AUTHOR
 import com.assignments.dummyapp.utils.Constants.CONTENT
 import com.assignments.dummyapp.utils.Constants.DB_NAME

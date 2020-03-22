@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.assignments.dummyapp.adapter.MainPagerAdapter
 import com.assignments.dummyapp.R
+import com.assignments.dummyapp.model.ArticleModel
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 

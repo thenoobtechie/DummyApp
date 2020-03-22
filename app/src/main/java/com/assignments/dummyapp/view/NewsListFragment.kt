@@ -15,6 +15,7 @@ import com.assignments.dummyapp.adapter.*
 import com.assignments.dummyapp.datasource.DBHelper
 import com.assignments.dummyapp.datasource.InsertArticleCallback
 import com.assignments.dummyapp.datasource.NetworkHelper
+import com.assignments.dummyapp.model.ArticleModel
 import com.assignments.dummyapp.utils.Utility
 import kotlinx.android.synthetic.main.fragment_news_list.*
 
