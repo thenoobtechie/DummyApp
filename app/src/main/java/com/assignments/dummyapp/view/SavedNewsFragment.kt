@@ -12,6 +12,7 @@ import com.assignments.dummyapp.*
 import com.assignments.dummyapp.adapter.ArticleListAdapter
 import com.assignments.dummyapp.adapter.ListItemClickCallback
 import com.assignments.dummyapp.datasource.DBHelper
+import com.assignments.dummyapp.datasource.DeleteArticleCallback
 import com.assignments.dummyapp.utils.Utility
 import kotlinx.android.synthetic.main.fragment_news_list.*
 
@@ -50,7 +51,7 @@ class SavedNewsFragment : Fragment(),
     override fun onResume() {
         super.onResume()
 
-        viewDataBridge.fetchSavedNews(activity, this)
+        viewDataBridge.fetchSavedNews(this)
     }
 
     override fun onSave(article: ArticleModel) {
@@ -58,10 +59,14 @@ class SavedNewsFragment : Fragment(),
     }
 
     override fun onDelete(article: ArticleModel) {
-        if (article.id > 0) viewDataBridge.deleteSavedNews(article.id)
-        Toast.makeText(activity, getString(R.string.deleted_successfully), Toast.LENGTH_SHORT).show()
 
-        viewDataBridge.fetchSavedNews(activity, this)
+        if (article.id > 0) viewDataBridge.deleteSavedNews(article.id, object : DeleteArticleCallback {
+            override fun onDeleteSuccess(rows: Int) {
+
+                Toast.makeText(activity, getString(R.string.deleted_successfully), Toast.LENGTH_SHORT).show()
+                viewDataBridge.fetchSavedNews(this@SavedNewsFragment)
+            }
+        })
     }
 
     override fun onItemClick(article: ArticleModel) {

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.assignments.dummyapp.*
 import com.assignments.dummyapp.adapter.*
 import com.assignments.dummyapp.datasource.DBHelper
+import com.assignments.dummyapp.datasource.InsertArticleCallback
 import com.assignments.dummyapp.datasource.NetworkHelper
 import com.assignments.dummyapp.utils.Utility
 import kotlinx.android.synthetic.main.fragment_news_list.*
@@ -89,8 +90,14 @@ class NewsListFragment : Fragment(),
     }
 
     override fun onSave(article: ArticleModel) {
-        viewDataBridge.save(article)
-        Toast.makeText(activity, getString(R.string.saved_successfully), Toast.LENGTH_SHORT).show()
+
+        viewDataBridge.save(article, object : InsertArticleCallback {
+            override fun onInsertSuccess(row: Long) {
+
+                if (row >= 0)
+                    Toast.makeText(activity, getString(R.string.saved_successfully), Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun onDelete(article: ArticleModel) {

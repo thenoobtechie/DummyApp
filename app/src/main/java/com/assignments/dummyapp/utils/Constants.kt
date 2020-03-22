@@ -19,6 +19,7 @@ object Constants {
     const val PUBLISHED_aT = "published_at"
     const val AUTHOR = "author"
     const val CONTENT = "content"
+    const val TEMP_ID = "tempId"
 
     const val PUBLISH_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss"
     const val DISPLAY_DATE_FORMAT = " MMM dd, yyyy HH:mm"

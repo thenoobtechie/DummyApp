@@ -11,11 +11,13 @@ import com.assignments.dummyapp.utils.Constants.ID
 import com.assignments.dummyapp.utils.Constants.IMAGE_uRL
 import com.assignments.dummyapp.utils.Constants.PUBLISHED_AT
 import com.assignments.dummyapp.utils.Constants.PUBLISHED_aT
+import com.assignments.dummyapp.utils.Constants.TEMP_ID
 import com.assignments.dummyapp.utils.Constants.TITLE
 import com.assignments.dummyapp.utils.Constants.URL
 import com.assignments.dummyapp.utils.Constants.URL_TO_IMAGE
 import kotlinx.android.parcel.Parcelize
 import org.json.JSONObject
+import java.util.*
 
 @Parcelize
 data class ArticleModel(
@@ -27,7 +29,8 @@ data class ArticleModel(
     var publishedAt: String,
     var author: String?,
     var content: String?,
-    var imageBitmap: Bitmap? = null
+    var imageBitmap: Bitmap? = null,
+    var tempId: String
 ) : Parcelable {
 
     fun toContentValues(): ContentValues {
@@ -39,6 +42,7 @@ data class ArticleModel(
         contentValues.put(PUBLISHED_aT, publishedAt)
         contentValues.put(AUTHOR, author)
         contentValues.put(CONTENT, content)
+        contentValues.put(TEMP_ID, tempId)
         return contentValues
     }
 
@@ -53,7 +57,8 @@ data class ArticleModel(
                 description = cursor.getString(cursor.getColumnIndex(DESCRIPTION)),
                 publishedAt = cursor.getString(cursor.getColumnIndex(PUBLISHED_aT)),
                 author = cursor.getString(cursor.getColumnIndex(AUTHOR)),
-                content = cursor.getString(cursor.getColumnIndex(CONTENT))
+                content = cursor.getString(cursor.getColumnIndex(CONTENT)),
+                tempId = cursor.getString(cursor.getColumnIndex(TEMP_ID))
             )
         }
 
@@ -65,7 +70,8 @@ data class ArticleModel(
                 description = articleJson[DESCRIPTION] as String,
                 publishedAt = articleJson[PUBLISHED_AT] as String,
                 author = articleJson[AUTHOR] as? String?,
-                content = articleJson[CONTENT] as? String?
+                content = articleJson[CONTENT] as? String?,
+                tempId = (articleJson[URL] as String).subSequence(0, 20).toString() + articleJson[PUBLISHED_AT] as String
             )
         }
     }

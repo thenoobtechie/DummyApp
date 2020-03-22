@@ -1,7 +1,8 @@
 package com.assignments.dummyapp.view
 
-import android.app.Activity
 import com.assignments.dummyapp.datasource.DBHelper
+import com.assignments.dummyapp.datasource.DeleteArticleCallback
+import com.assignments.dummyapp.datasource.InsertArticleCallback
 import com.assignments.dummyapp.datasource.NetworkHelper
 
 class ViewDataBridge(
@@ -9,19 +10,19 @@ class ViewDataBridge(
     var networkHelper: NetworkHelper? = null
 ) {
 
-    fun save(articleModel: ArticleModel) {
-        dbHelper.insertArticle(articleModel)
+    fun save(articleModel: ArticleModel, callback: InsertArticleCallback) {
+        dbHelper.insertArticle(articleModel, callback)
     }
 
     fun fetch() {
         networkHelper?.execute()
     }
 
-    fun fetchSavedNews(activity: Activity?, callback: DataFetchCallback) {
-        dbHelper.getArticles(activity, callback)
+    fun fetchSavedNews(callback: DataFetchCallback) {
+        dbHelper.getArticles(callback)
     }
 
-    fun deleteSavedNews(id: Int) {
-        dbHelper.removeArticle(id)
+    fun deleteSavedNews(id: Int, callback: DeleteArticleCallback) {
+        dbHelper.removeArticle(id, callback)
     }
 }
