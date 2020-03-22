@@ -81,7 +81,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_V
                         null,
                         null,
                         null,
-                        null,
+                        "title ASC",
                         null
                     )
                 if (cursor.moveToFirst()) {

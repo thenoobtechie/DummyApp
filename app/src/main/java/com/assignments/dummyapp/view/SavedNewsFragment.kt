@@ -43,8 +43,7 @@ class SavedNewsFragment : Fragment(),
         rv_articleList.addItemDecoration(DividerItemDecoration(view.context, RecyclerView.VERTICAL))
         viewDataBridge = ViewDataBridge(
             DBHelper.getDBInstance(view.context),
-            null,
-            true
+            null
         )
     }
 
@@ -65,12 +64,10 @@ class SavedNewsFragment : Fragment(),
         viewDataBridge.fetchSavedNews(activity, this)
     }
 
-    override fun onClick(article: ArticleModel) {
+    override fun onItemClick(article: ArticleModel) {
+
         context?.let {
-            Utility.openUrlInBrowser(
-                it,
-                article.url
-            )
+            Utility.openDetailArticle(it, article.url)
         }
     }
 
