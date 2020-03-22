@@ -55,10 +55,6 @@ class SavedNewsFragment : Fragment(),
         viewDataBridge.fetchSavedNews(this)
     }
 
-    override fun onSave(article: ArticleModel) {
-
-    }
-
     override fun onDelete(article: ArticleModel) {
 
         if (article.id > 0) viewDataBridge.deleteSavedNews(article.id, object : DeleteArticleCallback {
@@ -77,10 +73,16 @@ class SavedNewsFragment : Fragment(),
         }
     }
 
+    override fun onSave(article: ArticleModel) {
+
+    }
+
+    //Data fetch success
     override fun onSuccess(articles: List<ArticleModel>) {
         dataListAdapter.notifyAdapter(articles)
     }
 
+    //Data fetch error
     override fun onError(sting: String?) {
 
     }

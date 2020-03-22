@@ -15,6 +15,7 @@ import com.assignments.dummyapp.utils.Utility
 import kotlinx.android.synthetic.main.article_item_layout.view.*
 import kotlin.collections.ArrayList
 
+//Sort state constants
 const val SORT_BY_TITLE_ASC = 0
 const val SORT_BY_TITLE_DESC = 1
 const val SORT_BY_PUBLISH_ASC = 2
@@ -23,9 +24,9 @@ const val SORT_BY_PUBLISH_DESC = 3
 class ArticleListAdapter(
     var list: List<ArticleModel> = ArrayList(),
     var callback: ListItemClickCallback,
-    var fromDB: Boolean = false//Common adapter for 2 lists (From network/DB)
-) :
-    RecyclerView.Adapter<ArticleListAdapter.DummyViewHolder>() {
+    //Common adapter for 2 lists (Network/DB)
+    var fromDB: Boolean = false
+) : RecyclerView.Adapter<ArticleListAdapter.DummyViewHolder>() {
 
     //Current applied sort
     var sortedVal = SORT_BY_TITLE_ASC
@@ -74,6 +75,7 @@ class ArticleListAdapter(
 
         fun bind(article: ArticleModel) {
 
+            //Set text
             itemView.title.text = article.title
             itemView.author.text = article.author ?: "NA"
             itemView.published_at.text = Utility.getFormattedDateTime(
@@ -82,6 +84,7 @@ class ArticleListAdapter(
                 DISPLAY_DATE_FORMAT
             )
 
+            //Set image(Use ImageLoader to download bitmap first time)
             article.imageBitmap?.let { itemView.article_image.setImageBitmap(it) }
                 ?: ImageLoader(
                     article.imageUrl,
@@ -91,6 +94,7 @@ class ArticleListAdapter(
                     THREAD_POOL_EXECUTOR
                 )
 
+            //Set click listeners
             itemView.save_article.setOnClickListener {
                 if (fromDB) {
                     callback.onDelete(article)
@@ -102,6 +106,7 @@ class ArticleListAdapter(
             }
         }
 
+        //Image loading success
         override fun onSuccess(position: Int, bitmap: Bitmap) {
 
             if (list.size > position) {
@@ -114,6 +119,7 @@ class ArticleListAdapter(
             }
         }
 
+        //Image loading failure
         override fun onFailure(string: String) {
             //TODO(NOT IMPLEMENTED)
         }

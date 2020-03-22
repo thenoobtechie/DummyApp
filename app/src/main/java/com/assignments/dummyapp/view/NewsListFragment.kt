@@ -42,6 +42,7 @@ class NewsListFragment : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Init state
         rv_articleList.adapter = dataListAdapter
         rv_articleList.addItemDecoration(DividerItemDecoration(view.context, RecyclerView.VERTICAL))
 
@@ -50,6 +51,7 @@ class NewsListFragment : Fragment(),
             NetworkHelper(this)
         )
 
+        //Fetch data if internet is available
         if (Utility.isInternetAvailable(view.context)) viewDataBridge.fetch()
         else Toast.makeText(context, getString(R.string.network_error), Toast.LENGTH_SHORT).show()
 
@@ -76,13 +78,14 @@ class NewsListFragment : Fragment(),
         }
     }
 
-
+    //Data fetch success
     override fun onSuccess(articles: List<ArticleModel>) {
 
         progress_layout.visibility = GONE
         dataListAdapter.notifyAdapter(articles.sortedBy { it.title })
     }
 
+    //Data fetch error
     override fun onError(sting: String?) {
         Toast.makeText(
             context,
@@ -101,14 +104,14 @@ class NewsListFragment : Fragment(),
         })
     }
 
-    override fun onDelete(article: ArticleModel) {
-
-    }
-
     override fun onItemClick(article: ArticleModel) {
         context?.let {
             Utility.openDetailArticle(it, article.url)
         }
+    }
+
+    override fun onDelete(article: ArticleModel) {
+
     }
 
 }
