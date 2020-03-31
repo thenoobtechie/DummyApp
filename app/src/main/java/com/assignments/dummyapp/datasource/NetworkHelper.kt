@@ -16,8 +16,8 @@ class NetworkHelper(var callback: DataFetchCallback): AsyncTask<Void, Void, Stri
 
     override fun doInBackground(vararg params: Void?): String {
 
-        var urlConnection: HttpURLConnection? = null
-        var reader: BufferedReader? = null
+        val urlConnection: HttpURLConnection?
+        val reader: BufferedReader?
 
         try {
 
@@ -26,7 +26,6 @@ class NetworkHelper(var callback: DataFetchCallback): AsyncTask<Void, Void, Stri
             urlConnection.requestMethod = "GET"
             urlConnection.connect()
 
-            val lengthOfFile = urlConnection.contentLength
             val inputStream = urlConnection.inputStream ?: return ERROR
             val buffer = StringBuffer()
             reader = BufferedReader(InputStreamReader(inputStream))
